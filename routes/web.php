@@ -19,4 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('barang', 'BarangController');
+Route::get('/laporan', 'BarangController@laporan');
+Route::get('/penyusutan', 'BarangController@penyusutan');
 Route::get('/home', 'HomeController@index')->name('home');

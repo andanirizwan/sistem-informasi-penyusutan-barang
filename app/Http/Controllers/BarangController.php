@@ -14,7 +14,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        return view('barang');
     }
 
     /**
@@ -81,5 +81,15 @@ class BarangController extends Controller
     public function destroy(Barang $barang)
     {
         //
+    }
+
+    public function laporan()
+    {
+        return view('laporan');
+    }
+
+    public function penyusutan()
+    {
+        return view('penyusutan');
     }
 }
