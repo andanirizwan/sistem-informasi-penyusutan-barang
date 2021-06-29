@@ -30,11 +30,11 @@
                         <div class="col-md-4 ">
                           <div class="card card-statistic-1">
                             <div class="card-icon bg-success">
-                              <i class="far fa-file"></i>
+                              <i class="far fa-newspaper"></i>
                             </div>
                             <div class="card-wrap">
                               <div class="card-header">
-                                <h4>Barang Aset</h4>
+                                <h4>Laporan Penyusutan</h4>
                               </div>
                               <div class="card-body">
                                 

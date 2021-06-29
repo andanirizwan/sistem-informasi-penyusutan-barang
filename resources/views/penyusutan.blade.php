@@ -13,6 +13,7 @@
                     <tbody>
                     <tr>
                       <th>No</th>
+                      <th>Gambar</th>
                       <th>Nama barang</th>
                       <th>Merk</th>
                       <th>Jumlah</th>
@@ -38,6 +39,7 @@
 
                     <tr>
                       <th>{{$i++}}</th>
+                      <th><img src="{{asset('storage/'.$barangs->gambar)}}" alt="" width="50px" height="50px"></th>
                       <th>{{$barangs->nama_barang}}</th>
                       <th>{{$barangs->merk}}</th>
                       <th>{{$barangs->jumlah}}</th>
@@ -52,7 +54,7 @@
                       <th>{{$barangs->penyusutan_fisik}}</th>
                       <th>{{$barangs->penyusutan_fungsional}}</th>
                       <th>{{$barangs->penyusutan_ekonomis}}</th>
-                      <th>{{$barangs->penyusutan_aset}}</th>
+                      <th><span class="badge badge-primary">{{$barangs->penyusutan_aset}}</span></th>
                     </tr>
                         
                     @endforeach

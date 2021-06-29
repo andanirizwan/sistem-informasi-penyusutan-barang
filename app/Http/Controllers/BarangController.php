@@ -37,6 +37,14 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'file' => 'mimes:jpg,jpeg,png|max:2000'
+        ]);
+
+        //upload
+        $nama_foto= time() .'.jpg';
+        $request->file('foto')->storeAs('public', $nama_foto);
+
         $barang = new Barang;
         $barang->nama_barang = $request->barang;
         $barang->merk = $request->merk;
@@ -50,6 +58,7 @@ class BarangController extends Controller
         $barang->no = $request->no;
         $barang->tahun_beli = $request->tahunbeli;
         $barang->jenis = $request->jenis;
+        $barang->gambar = $nama_foto;
         
         $barang->user_id = Auth::user()->id;
 
@@ -90,7 +99,6 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //rumus : =I4*(1-(Q4/100))*(1-(R4/100))*(1-(S4/100))
         $harga = $request->harga;
         $penyusutan_fisik = $request->penyusutan_fisik;
         $penyusutan_fungsional = $request->penyusutan_fungsional;

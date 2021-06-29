@@ -10,7 +10,7 @@
                 <div class="card-body">
 
                 @if (Auth::user()->role == 'admin')
-                  <a href="{{route('barang.create')}}" class="btn btn-info">Tambah barang</a><br>
+                  <a href="{{route('barang.create')}}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> Tambah barang</a><br>
                 @endif
                   
 
@@ -18,6 +18,7 @@
                     <tbody>
                     <tr>
                       <th>No</th>
+                      <th>Gambar</th>
                       <th>Nama barang</th>
                       <th>Merk</th>
                       <th>Jumlah</th>
@@ -40,20 +41,21 @@
                     
 
                     <tr>
-                      <th>{{$i++}}</th>
-                      <th>{{$barangs->nama_barang}}</th>
-                      <th>{{$barangs->merk}}</th>
-                      <th>{{$barangs->jumlah}}</th>
-                      <th>{{$barangs->satuan}}</th>
-                      <th>{{$barangs->harga}}</th>
-                      <th>{{$barangs->total}}</th>
-                      <th>{{$barangs->unit}}</th>
-                      <th>{{$barangs->jumlah_modal}}</th>
-                      <th>{{$barangs->kecamatan}}</th>
-                      <th>{{$barangs->no}}</th>
-                      <th>{{$barangs->tahun_beli}}</th>
-                      <th>{{$barangs->jenis}}</th>
-                      <th><a href="barang/{{$barangs->id}}/edit" class="btn btn-success">Nilai</a></th>
+                      <td>{{$i++}}</td>
+                      <td><img src="{{asset('storage/'.$barangs->gambar)}}" alt="" width="50px" height="50px"></td>
+                      <td>{{$barangs->nama_barang}}</td>
+                      <td>{{$barangs->merk}}</td>
+                      <td>{{$barangs->jumlah}}</td>
+                      <td>{{$barangs->satuan}}</td>
+                      <td>{{$barangs->harga}}</td>
+                      <td>{{$barangs->total}}</td>
+                      <td>{{$barangs->unit}}</td>
+                      <td>{{$barangs->jumlah_modal}}</td>
+                      <td>{{$barangs->kecamatan}}</td>
+                      <td>{{$barangs->no}}</td>
+                      <td>{{$barangs->tahun_beli}}</td>
+                      <td>{{$barangs->jenis}}</td>
+                      <td><a href="barang/{{$barangs->id}}/edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i> Nilai</a></td>
                     </tr>
                         
                     @endforeach

@@ -57,6 +57,10 @@
                     <label>jenis :</label>
                     <input type="text" class="form-control" name="jenis" required>
                   </div>
+                  <div class="form-group">
+                    <label>Foto :</label>
+                    <input type="file" class="form-control" name="foto" required>
+                  </div>
                   @csrf
                   <button class="btn btn-primary mr-1" type="submit">Submit</button>
                   </form>
