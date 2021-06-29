@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
@@ -14,7 +15,8 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('barang');
+        $barang = barang::paginate(10);
+        return view('barang', ['barang'=>$barang]);
     }
 
     /**
@@ -24,7 +26,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('create-barang');
     }
 
     /**
@@ -35,7 +37,25 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $barang = new Barang;
+        $barang->nama_barang = $request->barang;
+        $barang->merk = $request->merk;
+        $barang->jumlah = $request->jumlah;
+        $barang->satuan = $request->satuan;
+        $barang->harga = $request->harga;
+        $barang->total = $request->satuan;
+        $barang->unit = $request->unit;
+        $barang->jumlah_modal = $request->jumlahmodal;
+        $barang->kecamatan = $request->kecamatan;
+        $barang->no = $request->no;
+        $barang->tahun_beli = $request->tahunbeli;
+        $barang->jenis = $request->jenis;
+        
+        $barang->user_id = Auth::user()->id;
+
+        $barang->save();
+
+        return redirect('/barang')->with('alert', 'barang berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +66,8 @@ class BarangController extends Controller
      */
     public function show(Barang $barang)
     {
-        //
+        
+        
     }
 
     /**
@@ -57,7 +78,7 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return view('nilai-barang', ['barang'=>$barang]);
     }
 
     /**
@@ -69,7 +90,24 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        //rumus : =I4*(1-(Q4/100))*(1-(R4/100))*(1-(S4/100))
+        $harga = $request->harga;
+        $penyusutan_fisik = $request->penyusutan_fisik;
+        $penyusutan_fungsional = $request->penyusutan_fungsional;
+        $penyusutan_ekonomis = $request->penyusutan_ekonomis;
+
+        $rumus = $harga*(1-($penyusutan_fisik/100))*(1-($penyusutan_fungsional/100))*(1-($penyusutan_ekonomis/100));
+
+        $id = $barang->id;
+        $barang = Barang::find($id);
+        $barang->penyusutan_fisik = $penyusutan_fisik;
+        $barang->penyusutan_fungsional = $request->penyusutan_fungsional;
+        $barang->penyusutan_ekonomis = $request->penyusutan_ekonomis;
+        $barang->penyusutan_aset = $rumus;
+
+        $barang->save();
+
+        return redirect('/penyusutan')->with('alert', 'barang berhasil dinilai');
     }
 
     /**
@@ -90,6 +128,7 @@ class BarangController extends Controller
 
     public function penyusutan()
     {
-        return view('penyusutan');
+        $barang = barang::paginate(10);
+        return view('penyusutan', ['barang'=>$barang]);
     }
 }
