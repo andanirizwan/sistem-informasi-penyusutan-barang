@@ -9,29 +9,42 @@
 
                 <div class="card-body">
 
-                @if (Auth::user()->role == 'admin')
-                  <a href="{{route('barang.create')}}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> Tambah barang</a><br>
-                @endif
-                  
+                  <a href="{{route('barang.create')}}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> Tambah barang</a><br>                  
+
+                  @if(Auth::user()->role == 'admin')
+                  <form class="form-inline" method="post" action="/barang/filter">
+                    <select name="filter" class="form-control mr-2" >
+                      <option > -- pilih pengguna --</option>
+                      @foreach ($user as $users)
+                        @if($users->role != 'admin')
+                          <option name="filter" value="{{$users->id}}"> {{$users->name}} </option>
+                        @endif
+                      @endforeach
+                    </select>
+                    @csrf
+
+                    <button class="btn btn-primary mr-1" type="submit">Filter</button>  
+                    
+                  </form><br>
+                  @endif
 
                   <table class="table table-bordered table-md table-responsive">
                     <tbody>
                     <tr>
                       <th>No</th>
-                      <th>Gambar</th>
                       <th>Nama barang</th>
                       <th>Merk</th>
                       <th>Jumlah</th>
                       <th>Satuan</th>
                       <th>Harga</th>
                       <th>Total</th>
-                      <th>Unit</th>
+                      <th>Pengguna</th>
                       <th>Jumlah Modal</th>
                       <th>Kecamatan</th>
                       <th>No</th>
                       <th>Tahun Beli</th>
                       <th>Jenis</th>
-                      <th>#</th>
+                      <!-- <th>#</th> -->
                     </tr>
 
                     @php
@@ -42,7 +55,6 @@
 
                     <tr>
                       <td>{{$i++}}</td>
-                      <td><img src="{{asset('storage/'.$barangs->gambar)}}" alt="" width="50px" height="50px"></td>
                       <td>{{$barangs->nama_barang}}</td>
                       <td>{{$barangs->merk}}</td>
                       <td>{{$barangs->jumlah}}</td>
@@ -55,7 +67,6 @@
                       <td>{{$barangs->no}}</td>
                       <td>{{$barangs->tahun_beli}}</td>
                       <td>{{$barangs->jenis}}</td>
-                      <td><a href="barang/{{$barangs->id}}/edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i> Nilai</a></td>
                     </tr>
                         
                     @endforeach

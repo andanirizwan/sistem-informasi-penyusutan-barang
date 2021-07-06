@@ -55,6 +55,16 @@
                       <th>{{$barangs->penyusutan_fungsional}}</th>
                       <th>{{$barangs->penyusutan_ekonomis}}</th>
                       <th><span class="badge badge-primary">{{$barangs->penyusutan_aset}}</span></th>
+
+                      @if (Auth::user()->role == 'admin')
+                        <th>
+                        <form class="form-horizontal" method="POST" action="/barang/{{$barangs->id}}" >
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i> Hapus</button>
+                        </form>
+                        </th>
+                      @endif
                     </tr>
                         
                     @endforeach

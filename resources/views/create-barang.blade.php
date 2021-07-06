@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Create Barang</div>
+                <div class="card-header">Tambah Barang</div>
 
                 <div class="card-body">
                   <form class="form-horizontal" method="POST" action="{{route('barang.store')}}" enctype="multipart/form-data">
@@ -18,7 +18,7 @@
                     <input type="text" class="form-control" name="merk" required>
                   </div>
                   <div class="form-group">
-                    <label>Jumlah</label>
+                    <label>Jumlah :</label>
                     <input type="text" class="form-control" name="jumlah">
                   </div>
                   <div class="form-group">
@@ -26,43 +26,40 @@
                     <input type="text" class="form-control" name="satuan" required>
                   </div>
                   <div class="form-group">
-                    <label>harga :</label>
+                    <label>Harga :</label>
                     <input type="text" class="form-control" name="harga" required>
                   </div>
                   <div class="form-group">
-                    <label>total :</label>
+                    <label>Total :</label>
                     <input type="text" class="form-control" name="total" required>
                   </div>
                   <div class="form-group">
-                    <label>unit :</label>
-                    <input type="text" class="form-control" name="unit" required>
+                    <label>Pengguna :</label>
+                    <input type="text" class="form-control" name="unit"  value="{{Auth::user()->name}}" readonly>
                   </div>
                   <div class="form-group">
-                    <label>jumlah modal :</label>
+                    <label>Jumlah :</label>
                     <input type="text" class="form-control" name="jumlahmodal" required>
                   </div>
                   <div class="form-group">
-                    <label>kecamatan :</label>
+                    <label>Kecamatan :</label>
                     <input type="text" class="form-control" name="kecamatan" required>
                   </div>
                   <div class="form-group">
-                    <label>no :</label>
+                    <label>No :</label>
                     <input type="text" class="form-control" name="no" required>
                   </div>
                   <div class="form-group">
-                    <label>tahun beli :</label>
+                    <label>Tahun Beli :</label>
                     <input type="date" class="form-control" name="tahunbeli" required>
                   </div>
                   <div class="form-group">
-                    <label>jenis :</label>
+                    <label>Jenis :</label>
                     <input type="text" class="form-control" name="jenis" required>
                   </div>
-                  <div class="form-group">
-                    <label>Foto :</label>
-                    <input type="file" class="form-control" name="foto" required>
-                  </div>
+                
                   @csrf
-                  <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                  <button class="btn btn-primary mr-1" type="submit">Tambah</button>
                   </form>
                 </div>
 
